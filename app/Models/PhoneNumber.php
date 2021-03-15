@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class PhoneNumber extends Model
 {
     use HasFactory;
+
+    public function passenger()
+    {
+        return $this->belongsTo("App\Models\Passenger");
+    }
 }

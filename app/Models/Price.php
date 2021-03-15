@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Price extends Model
 {
     use HasFactory;
+
+    public function ticket()
+    {
+        return $this->hasMany("\App\Models\Ticket");
+    }
 }
