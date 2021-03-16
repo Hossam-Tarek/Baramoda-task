@@ -45,24 +45,6 @@
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="departure-time">Departure time</label>
-                <input type="time" name="departure_time" id="departure-time" class="form-control">
-                @error("departure_time")
-                <p class="help text-danger">{{ $errors->first("departure_time") }}</p>
-                @enderror
-            </div>
-
-            <select name="price_id" id="price" class="custom-select d-inline-block mt-3">
-                <option selected>Choose a price</option>
-                @foreach($prices as $price)
-                    <option value="{{ $price->id }}">{{ $price->price }}</option>
-                @endforeach
-            </select>
-            @error("end_station_id")
-            <p class="help text-danger">{{ $errors->first("end_station_id") }}</p>
-            @enderror
-
             <input type="submit" class="btn btn-primary mt-3" value="Submit">
             <a href="{{ route('tickets.index') }}" class="btn btn-danger mt-3">Cancel</a>
         </form>

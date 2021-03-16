@@ -48,17 +48,26 @@ class TicketController extends Controller
         $request->validate([
             "start_station_id" => "required|numeric",
             "end_station_id" => "required|numeric",
-            "price_id" => "required|numeric",
             "name" => "required",
             "departure_date" => "required|date"
         ]);
+        $startStation = Station::find($request->start_station_id);
+        $endStation = Station::find($request->end_station_id);
+        $numOfStations = abs($endStation->order - $startStation->order);
+        $travelCoastId = 0;
+
+        foreach (Price::orderBy("num_of_stations", "ASC")->get() as $price) {
+            if ($price->num_of_stations <= $numOfStations) {
+                $travelCoastId = $price->id;
+            }
+        }
 
         $passenger = Passenger::where("name", $request->name)->take(1)->get();
 
         Ticket::create([
             "start_station_id" => $request->start_station_id,
             "end_station_id" => $request->end_station_id,
-            "price_id" => $request->price_id,
+            "price_id" => $travelCoastId,
             "passenger_id" => $passenger[0]->id,
             "departure_date" => $request->departure_date
         ]);
