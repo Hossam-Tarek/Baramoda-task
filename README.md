@@ -8,6 +8,13 @@ Railway system task for Baramoda company.
 
 ![erd](img/erd.png)
 
+## Run the project
+1. git clone https://github.com/Hossam-Tarek/Baramoda-task.git
+2. cd Baramoda-task
+3. composer install
+4. cp .env.example .env
+5. php artisan key:generate
+
 ## Contributing
 
 We encourage you to contribute to Baramoda task. Please check out the [CONTRIBUTING.md](./CONTRIBUTING.md).
