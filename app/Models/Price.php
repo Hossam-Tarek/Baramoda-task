@@ -11,7 +11,7 @@ class Price extends Model
 
     protected $guarded;
 
-    public function ticket()
+    public function tickets()
     {
         return $this->hasMany("\App\Models\Ticket");
     }

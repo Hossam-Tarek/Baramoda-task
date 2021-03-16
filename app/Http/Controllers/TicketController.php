@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Passenger;
+use App\Models\Price;
+use App\Models\Station;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,11 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        return view("tickets.index", [
+            "tickets" => Ticket::all(),
+            "stations" => Station::all(),
+            "prices" => Price::all()
+        ]);
     }
 
     /**
@@ -24,7 +31,10 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        return view("tickets.create", [
+            "stations" => Station::all(),
+            "prices" => Price::all()
+        ]);
     }
 
     /**
@@ -35,7 +45,25 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "start_station_id" => "required|numeric",
+            "end_station_id" => "required|numeric",
+            "price_id" => "required|numeric",
+            "name" => "required",
+            "departure_date" => "required|date"
+        ]);
+
+        $passenger = Passenger::where("name", $request->name)->take(1)->get();
+
+        Ticket::create([
+            "start_station_id" => $request->start_station_id,
+            "end_station_id" => $request->end_station_id,
+            "price_id" => $request->price_id,
+            "passenger_id" => $passenger[0]->id,
+            "departure_date" => $request->departure_date
+        ]);
+
+        return redirect(route("tickets.index"));
     }
 
     /**
@@ -80,6 +108,7 @@ class TicketController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-        //
+        $ticket->delete();
+        return redirect(route("tickets.index"));
     }
 }

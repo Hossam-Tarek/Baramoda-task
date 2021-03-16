@@ -13,11 +13,11 @@ class Station extends Model
 
     public function ticketStartStation()
     {
-        return $this->belongsTo("\App\Models\Station");
+        return $this->belongsTo("\App\Models\Station", "start_station_id");
     }
 
     public function ticketEndStation()
     {
-        return $this->belongsTo("\App\Models\Station");
+        return $this->belongsTo("\App\Models\Station", "end_station_id");
     }
 }

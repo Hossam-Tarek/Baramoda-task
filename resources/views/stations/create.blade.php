@@ -1,6 +1,6 @@
 @extends("layouts.master")
 
-@section("title", "Prices")
+@section("title", "Stations")
 
 @section("content")
     <div class="row">

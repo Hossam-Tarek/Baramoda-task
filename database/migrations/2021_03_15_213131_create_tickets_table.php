@@ -34,8 +34,12 @@ class CreateTicketsTable extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
+            $table->foreignId("passenger_id")
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
             $table->date("departure_date");
-            $table->time("departure_time");
 
             $table->timestamps();
         });

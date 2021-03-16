@@ -9,6 +9,8 @@ class Ticket extends Model
 {
     use HasFactory;
 
+    protected $guarded;
+
     public function passenger()
     {
         return $this->belongsTo("\App\Models\Passenger");
@@ -16,16 +18,16 @@ class Ticket extends Model
 
     public function startStation()
     {
-        return $this->hasOne("\App\Models\Station");
+        return $this->belongsTo("\App\Models\Station", "start_station_id");
     }
 
     public function endStation()
     {
-        return $this->hasOne("\App\Models\Station");
+        return $this->belongsTo("\App\Models\Station", "end_station_id");
     }
 
     public function price()
     {
-        return $this->belongsTo("\App\Models\Ticket");
+        return $this->belongsTo("\App\Models\Price");
     }
 }
