@@ -8,6 +8,17 @@ Railway system task for Baramoda company.
 
 ![erd](img/erd.png)
 
+## Create user and database
+```mysql
+CREATE USER baramoda@localhost IDENTIFIED BY 'Baramoda-2021';
+
+CREATE DATABASE baramoda;
+
+GRANT ALL PRIVILEGES ON baramoda.* TO baramoda@localhost;
+
+FLUSH PRIVILEGES;
+```
+
 ## Run the project
 1. git clone https://github.com/Hossam-Tarek/Baramoda-task.git
 2. cd Baramoda-task
