@@ -13,9 +13,13 @@
 </head>
 
 <body>
-<div class="container">
-    @yield('content')
+<div id="main-content">
+    @include('includes.header')
+    <div class="container mt-3">
+        @yield('content')
+    </div>
 </div>
+@include('includes.footer')
 
 <script src="{{ asset('js/app.js') }}"></script>
 @yield('script')
