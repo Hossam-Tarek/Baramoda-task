@@ -9,6 +9,8 @@ class Station extends Model
 {
     use HasFactory;
 
+    protected $guarded;
+
     public function ticketStartStation()
     {
         return $this->belongsTo("\App\Models\Station");

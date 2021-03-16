@@ -14,7 +14,7 @@ class StationController extends Controller
      */
     public function index()
     {
-        //
+        return view("stations.index", ["stations" => Station::all()]);
     }
 
     /**
@@ -24,7 +24,7 @@ class StationController extends Controller
      */
     public function create()
     {
-        //
+        return view("stations.create");
     }
 
     /**
@@ -35,7 +35,11 @@ class StationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Station::create($request->validate([
+            "name" => "required|unique:stations",
+            "order" => "required|unique:stations"
+        ]));
+        return redirect(route("stations.index"));
     }
 
     /**
@@ -57,7 +61,7 @@ class StationController extends Controller
      */
     public function edit(Station $station)
     {
-        //
+        return view("stations.edit", compact("station"));
     }
 
     /**
@@ -69,7 +73,11 @@ class StationController extends Controller
      */
     public function update(Request $request, Station $station)
     {
-        //
+        $station->update($request->validate([
+            "name" => "required|unique:stations",
+            "order" => "required|unique:stations"
+        ]));
+        return redirect(route("stations.index"));
     }
 
     /**
@@ -80,6 +88,7 @@ class StationController extends Controller
      */
     public function destroy(Station $station)
     {
-        //
+        $station->delete();
+        return redirect(route("stations.index"));
     }
 }
