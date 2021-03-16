@@ -14,7 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $tickets = \App\Models\Ticket::all()->count();
+    $passengers = \App\Models\Passenger::all()->count();
+    $stations = \App\Models\Station::all()->count();
+    $prices = \App\Models\Price::all()->count();
+    return view('home', [
+        "tickets" => $tickets,
+        "passengers" => $passengers,
+        "stations" => $stations,
+        "prices" => $prices
+    ]);
 });
 
 Route::resource("/prices", \App\Http\Controllers\PriceController::class);
