@@ -14,7 +14,7 @@ class PriceController extends Controller
      */
     public function index()
     {
-        //
+        return view("prices.index", ["prices" => Price::all()]);
     }
 
     /**
@@ -24,7 +24,7 @@ class PriceController extends Controller
      */
     public function create()
     {
-        //
+        return view("prices.create");
     }
 
     /**
@@ -35,7 +35,11 @@ class PriceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Price::create($request->validate([
+            "num_of_stations" => "required|unique:prices|numeric",
+            "price" => "required|numeric"
+        ]));
+        return redirect(route("prices.index"));
     }
 
     /**
@@ -57,7 +61,7 @@ class PriceController extends Controller
      */
     public function edit(Price $price)
     {
-        //
+        return view("prices.edit", compact('price'));
     }
 
     /**
@@ -69,7 +73,11 @@ class PriceController extends Controller
      */
     public function update(Request $request, Price $price)
     {
-        //
+        $price->update($request->validate([
+            "num_of_stations" => "required|unique:prices|numeric",
+            "price" => "required|numeric"
+        ]));
+        return redirect(route("prices.index"));
     }
 
     /**
@@ -80,6 +88,7 @@ class PriceController extends Controller
      */
     public function destroy(Price $price)
     {
-        //
+        $price->delete();
+        return redirect(route("prices.index"));
     }
 }
