@@ -14,7 +14,7 @@ class PassengerController extends Controller
      */
     public function index()
     {
-        //
+        return view("passengers.index", ["passengers" => Passenger::all()]);
     }
 
     /**
@@ -24,7 +24,7 @@ class PassengerController extends Controller
      */
     public function create()
     {
-        //
+        return view("passengers.create");
     }
 
     /**
@@ -35,7 +35,12 @@ class PassengerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Passenger::create($request->validate([
+            "name" => "required|unique:passengers",
+            "id_card_num" => "required|unique:passengers",
+            "phone_number" => "required|unique:passengers"
+        ]));
+        return redirect(route("passengers.index"));
     }
 
     /**
@@ -57,7 +62,7 @@ class PassengerController extends Controller
      */
     public function edit(Passenger $passenger)
     {
-        //
+        return view("passengers.edit", compact("passenger"));
     }
 
     /**
@@ -69,7 +74,12 @@ class PassengerController extends Controller
      */
     public function update(Request $request, Passenger $passenger)
     {
-        //
+        $passenger->update($request->validate([
+            "name" => "required|unique:passengers",
+            "id_card_num" => "required|unique:passengers",
+            "phone_number" => "required|unique:passengers"
+        ]));
+        return redirect(route("passengers.index"));
     }
 
     /**
@@ -80,6 +90,7 @@ class PassengerController extends Controller
      */
     public function destroy(Passenger $passenger)
     {
-        //
+        $passenger->delete();
+        return redirect(route("passengers.index"));
     }
 }

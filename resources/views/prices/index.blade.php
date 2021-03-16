@@ -6,7 +6,7 @@
     <div class="row">
         <a href="{{ route("prices.create") }}" class="btn btn-primary mb-3 mt-3">Add new price</a>
         <div class="col-sm-12">
-            <table class="table table-striped">
+            <table class="table table-striped table-responsive">
                 <thead>
                 <tr>
                     <th>Number of stations</th>

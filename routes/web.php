@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource("/prices", \App\Http\Controllers\PriceController::class);
+Route::resource("/passengers", \App\Http\Controllers\PassengerController::class);

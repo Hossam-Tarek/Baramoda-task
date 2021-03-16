@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
         Price::factory(3)->create();
         Passenger::factory(3)->create();
         Station::factory(3)->create();
-        PhoneNumber::factory(3)->create();
         Ticket::factory(3)->create();
     }
 }

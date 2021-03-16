@@ -11,14 +11,14 @@
             <input type="number" name="num_of_stations" class="form-control @error('num_of_stations') is-invalid @enderror"
                    min="0" max="1000" value="{{ $price->num_of_stations }}">
             @error("num_of_stations")
-            <p class="invalid-feedback">{{ $errors->first() }}</p>
+            <p class="invalid-feedback">{{ $errors->first('num_of_stations') }}</p>
             @enderror
 
             <label for="price">Price</label>
             <input type="number" name="price" class="form-control @error('price') is-invalid @enderror"
                    min="0" value="{{ $price->price }}">
             @error("price")
-            <p class="invalid-feedback">{{ $errors->first() }}</p>
+            <p class="invalid-feedback">{{ $errors->first('price') }}</p>
             @enderror
 
             <input type="submit" class="btn btn-primary mt-3" value="Edit">

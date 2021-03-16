@@ -9,13 +9,10 @@ class Passenger extends Model
 {
     use HasFactory;
 
+    protected $guarded;
+
     public function tickets()
     {
         return $this->hasMany("\App\Models\Ticket");
-    }
-
-    public function phoneNumbers()
-    {
-        return $this->hasMany("\App\Models\PhoneNumber");
     }
 }

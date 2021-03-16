@@ -23,7 +23,8 @@ class PassengerFactory extends Factory
     {
         return [
             "name" => $this->faker->name,
-            "id_card_num" => $this->faker->bankAccountNumber
+            "id_card_num" => $this->faker->bankAccountNumber,
+            "phone_number" => $this->faker->phoneNumber
         ];
     }
 }

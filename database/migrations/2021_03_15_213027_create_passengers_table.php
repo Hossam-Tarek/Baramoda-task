@@ -17,6 +17,7 @@ class CreatePassengersTable extends Migration
             $table->id();
             $table->string("name", "64");
             $table->string("id_card_num", "64");
+            $table->string("phone_number", "64");
             $table->timestamps();
         });
     }
